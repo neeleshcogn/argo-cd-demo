@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: demo
+  name: demo-app
+  namespace: argo-demo
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      annotations:
+        service: demo-app-service
+      labels:
+        app: demo
+    spec:
+      containers:
+      - name: demo-app
+        env:
+        - name: PORT
+          value: 3000
+        image: shrutibagwe/demo:latest
+        imagePullPolicy: Always
+        livenessProbe:
+          tcpSocket:
+            port: 3000
+          failureThreshold: 3
+          successThreshold: 1
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 2
+        readinessProbe:
+          tcpSocket:
+            port: 3000
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10
+          timeoutSeconds: 2
+      restartPolicy: Always
