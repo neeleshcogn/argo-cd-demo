@@ -1,7 +1,7 @@
 node {
     def app
     stage('Clone repository') {
-        git clone 'https://github.com/shruti52/argo-cd-demo.git'
+        checkout scm
     }
 
     stage('Build image') {
