@@ -1,4 +1,4 @@
-node {
+node('Built-In Node') {
     def app
 
     stage('Clone repository') {
