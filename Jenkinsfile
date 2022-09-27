@@ -41,9 +41,5 @@ spec:
         } //container
       } //steps
     } //stage(build)
-   stage('Trigger ManifestUpdate') {
-                echo "triggering updatemanifestjob"
-                build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
-        }
   } //stages
 } //pipeline
