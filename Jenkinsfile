@@ -4,7 +4,7 @@ pipeline {
       //cloud 'kubernetes-plugin-test'
       label 'kubeagent'
       containerTemplate {
-        name 'maven'
+        name 'jnlp'
         image 'maven:3.3.9-jdk-8-alpine'
         ttyEnabled true
         command 'cat'
