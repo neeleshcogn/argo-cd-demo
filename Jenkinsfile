@@ -3,28 +3,6 @@ pipeline {
   stages {
     //Build container image
     stage('Build') {
-      agent {
-        kubernetes {
-          label 'kubeagent'
-          defaultContainer 'jnlp'
-          yaml """
-apiVersion: v1
-kind: Pod
-spec:
-  containers:
-  - name: jnlp
-    image: docker:18.05-dind
-    securityContext:
-      privileged: true
-    volumeMounts:
-      - name: dind-storage
-        mountPath: /var/lib/docker
-  volumes:
-    - name: dind-storage
-      emptyDir: {}
-"""
-        }
-      }
       steps {
         container('dind') {
           script {
