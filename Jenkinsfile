@@ -6,13 +6,13 @@ pipeline {
       agent {
         kubernetes {
           label 'kubeagent'
-          defaultContainer 'dind'
+          defaultContainer 'jnlp'
           yaml """
 apiVersion: v1
 kind: Pod
 spec:
   containers:
-  - name: dind
+  - name: jnlp
     image: docker:18.05-dind
     securityContext:
       privileged: true
