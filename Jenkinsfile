@@ -18,9 +18,9 @@ pipeline {
           - name: dockersock
             hostPath:
                 path: /var/run/docker.sock
-          dnsConfig:
-            nameservers:
-              - 8.8.8.8
+          securityContext:
+            privileged: true
+
         '''
     }
   }
@@ -34,6 +34,7 @@ pipeline {
                    def app = docker.build("shrutibagwe/demo:${env.BUILD_ID}")
                    app.push()     
             }
+            
         }
         }
       }
