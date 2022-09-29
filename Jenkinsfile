@@ -18,6 +18,9 @@ pipeline {
           - name: dockersock
             hostPath:
                 path: /var/run/docker.sock
+          dnsConfig:
+            nameservers:
+              - 8.8.8.8
         '''
     }
   }
